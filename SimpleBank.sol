@@ -1,3 +1,5 @@
+
+pragma solidity ^0.4.13;
 contract SimpleBank {
 	
 	mapping (address => uint) private balances;
