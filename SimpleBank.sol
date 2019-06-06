@@ -1,3 +1,5 @@
+pragma solidity ^0.5.0;
+
 contract SimpleBank {
 	
 	mapping (address => uint) private balances;
@@ -6,7 +8,7 @@ contract SimpleBank {
 	
 	event DepositMade(address accountAddress, uint amount);
 	
-	function SimpleBank() public {
+	constructor() public {
 		owner = msg.sender;
 	}
 	 
@@ -16,7 +18,7 @@ contract SimpleBank {
 		
 		balances[msg.sender] += msg.value;
 	
-		DepositMade(msg.sender, msg.value);
+		emit DepositMade(msg.sender, msg.value);
 		
 		return balances[msg.sender];
     }
@@ -31,7 +33,7 @@ contract SimpleBank {
         return balances[msg.sender];
     }
 	
-	function balance() constant public returns (uint) {
+	function balance() external view returns (uint) {
         return balances[msg.sender];
     }
 	
